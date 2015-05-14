@@ -1,0 +1,10 @@
+{
+  "name": "socket-send-coordinates",
+  "version": "0.0.1",
+  "description": "generate and send to node server geolocation coordinates",
+  "dependencies": {
+    "chance": "^0.7.5",
+    "express": "^4.12.3",
+    "socket.io": "^1.3.5"
+  }
+}

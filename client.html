@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Socket.IO client</title>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="http://chancejs.com/chance.min.js"></script>
+		<script>
+
+			var socket = io();
+			socket.on('generated', function(msg){
+				$('#messages').append($('<li>').text(msg));
+			});
+			$(document).ready(function(){
+				$('#button-start').click(function(){
+					socket.emit( 'action', {todo: 'start'} );
+				});
+				$('#button-stop').click(function(){
+					socket.emit( 'action', {todo: 'stop'} );
+				});
+			});
+			
+		  	
+		</script>	
+	</head>
+	<body>
+		<button id="button-start">Start</button> | <button id="button-stop">Stop</button>
+		<div id="messages"></div>
+	</body>
+</html>
