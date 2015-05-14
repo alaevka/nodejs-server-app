@@ -8,15 +8,24 @@
 		<script>
 
 			var socket = io();
-			socket.on('generated', function(msg){
-				$('#messages').append($('<li>').text(msg));
-			});
+			var started = 'stopped';
+			// socket.on('generated', function(msg){
+			// 	$('#messages').append($('<li>').text(msg));
+			// });
 			$(document).ready(function(){
 				$('#button-start').click(function(){
-					socket.emit( 'action', {todo: 'start'} );
+					if(started != 'started') {
+						t=setInterval( function() {
+			 				var random_coordinates = chance.coordinates();
+			 				socket.emit( 'data_send', {coordinates: random_coordinates} );
+			 			}, 1000);
+						started = 'started';
+					}
+
 				});
 				$('#button-stop').click(function(){
-					socket.emit( 'action', {todo: 'stop'} );
+				 	clearInterval(t);
+				 	started = 'stopped';
 				});
 			});
 			
