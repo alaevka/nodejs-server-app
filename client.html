@@ -26,6 +26,7 @@
 				$('#button-stop').click(function(){
 				 	clearInterval(t);
 				 	started = 'stopped';
+				 	socket.emit('event_send', {event_id: 'stopped'} );
 				});
 			});
 			

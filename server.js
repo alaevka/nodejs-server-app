@@ -49,6 +49,9 @@ io.on('connection', function(socket){
     console.log(data.coordinates+', '+socket.id);
 	
   });
+  socket.on('event_send', function(data){
+    console.log(data.event_id+', '+socket.id);
+  });
 });
 
 
