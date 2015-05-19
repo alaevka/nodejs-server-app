@@ -18,7 +18,7 @@
 						t=setInterval( function() {
 			 				var random_coordinates = chance.coordinates();
 			 				socket.emit( 'data_send', {coordinates: random_coordinates} );
-			 			}, 10000);
+			 			}, 500);
 						started = 'started';
 					}
 

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Socket.IO client</title>
+		<style type="text/css">
+      		html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    	</style>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			var socket = io.connect('http://127.0.0.1:3000');
+			var map;
+			function initialize() {
+				//var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+				var mapOptions = {
+		          	center: new google.maps.LatLng(54.444492, 46.406250),
+		          	zoom: 3,
+		          	mapTypeId: google.maps.MapTypeId.ROADMAP,
+		          	
+		        };
+			    map = new google.maps.Map(document.getElementById('map-canvas'),
+					mapOptions);
+
+				
+			}
+			socket.on('updated', function(msg){
+				var coordinates_sring = msg['coordinates'];
+				coordinates_sring = coordinates_sring.split(',');
+				var marker = new google.maps.Marker({
+				      position: new google.maps.LatLng(coordinates_sring[0], coordinates_sring[1]),
+				      map: map,
+				      //title: 'Hello World!'
+				});
+				console.log(marker);
+				//$('#coordinates').append(JSON.stringify(msg)+'<br>');
+			});
+			
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>	
+	</head>
+	<body>
+		<div id="map-canvas"></div>
+	</body>
+</html>
