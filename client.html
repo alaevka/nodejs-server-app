@@ -17,8 +17,10 @@
 					if(started != 'started') {
 						t=setInterval( function() {
 			 				var random_coordinates = chance.coordinates();
+			 				//console.log(random_coordinates);
+
 			 				socket.emit( 'data_send', {coordinates: random_coordinates} );
-			 			}, 500);
+			 			}, 10000);
 						started = 'started';
 					}
 

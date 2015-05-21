@@ -9,7 +9,7 @@
 		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
-			var socket = io.connect('http://127.0.0.1:3000');
+			var socket = io.connect('http://127.0.0.1:8080');
 			var map;
 			function initialize() {
 				//var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
@@ -25,10 +25,11 @@
 				
 			}
 			socket.on('updated', function(msg){
-				var coordinates_sring = msg['coordinates'];
-				coordinates_sring = coordinates_sring.split(',');
+				var lat = msg['lat'];
+				var lon = msg['lon'];
+				
 				var marker = new google.maps.Marker({
-				      position: new google.maps.LatLng(coordinates_sring[0], coordinates_sring[1]),
+				      position: new google.maps.LatLng(lat, lon),
 				      map: map,
 				      //title: 'Hello World!'
 				});

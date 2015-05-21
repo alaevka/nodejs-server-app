@@ -1,6 +1,6 @@
-var io = require('socket.io').listen(3000);
+var io = require('socket.io').listen(8080);
 var mubsub = require('mubsub');
-var client = mubsub('mongodb://localhost:27017/laravel5');
+var client = mubsub('mongodb://localhost:27017/tracker');
 var channel = client.channel('coordinates', { size: 1000000000});
 
 io.on('connection', function(socket){
